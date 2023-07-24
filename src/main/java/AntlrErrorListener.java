@@ -12,6 +12,6 @@ public class AntlrErrorListener extends BaseErrorListener {
         String msg,
         RecognitionException e
     ) throws RuntimeException {
-        throw new RuntimeException("Incorrect Input Expression in position index-" + charPositionInLine);
+        throw new RuntimeException("Incorrect Input Expression in position index - " + charPositionInLine);
     }
 }
