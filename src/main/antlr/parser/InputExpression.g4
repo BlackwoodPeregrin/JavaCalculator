@@ -1,5 +1,14 @@
 grammar InputExpression;
 
+options {
+    language = Java;
+}
+
+@header {
+package antrl.gen;
+}
+
+
 expression: unaryOperator? expr (operator unaryOperator? expr)*;
 
 expr: function | number | lBrecket expression rBrecket;

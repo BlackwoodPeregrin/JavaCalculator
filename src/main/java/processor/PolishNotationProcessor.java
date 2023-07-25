@@ -1,3 +1,5 @@
+package processor;
+
 import org.jetbrains.annotations.NotNull;
 import token.*;
 import java.util.ArrayDeque;
@@ -62,16 +64,42 @@ public class PolishNotationProcessor {
         Func fun,
         Double num
     ) {
-        var value = switch (fun) {
-            case SIN -> Math.sin(num);
-            case COS -> Math.cos(num);
-            case TAN -> Math.tan(num);
-            case ASIN -> Math.asin(num);
-            case ACOS -> Math.acos(num);
-            case ATAN -> Math.atan(num);
-            case SQRT -> Math.sqrt(num);
-            case LN -> Math.log10(num);
-            case LOG -> Math.log(num);
+        double value = 0.0;
+        switch (fun) {
+            case SIN -> value = Math.sin(num);
+            case COS -> value = Math.cos(num);
+            case TAN -> value = Math.tan(num);
+            case ASIN -> {
+                if (num < -1 || num > 1) {
+                    throw new RuntimeException("Error. Argument function asin must be in diapason [-1;1]");
+                }
+                value = Math.asin(num);
+            }
+            case ACOS -> {
+                if (num < -1 || num > 1) {
+                    throw new RuntimeException("Error. Argument function acos must be in diapason [-1;1]");
+                }
+                value = Math.acos(num);
+            }
+            case ATAN -> value = Math.atan(num);
+            case SQRT -> {
+                if (num <= 0) {
+                    throw new RuntimeException("Error. Argument function sqrt must be positive");
+                }
+                value = Math.sqrt(num);
+            }
+            case LN -> {
+                if (num <= 0) {
+                    throw new RuntimeException("Error. Argument function ln must be positive");
+                }
+                value = Math.log10(num);
+            }
+            case LOG -> {
+                if (num <= 0) {
+                    throw new RuntimeException("Error. Argument function log must be positive");
+                }
+                value = Math.log(num);
+            }
         };
         return new TokenNumber(value);
     }
@@ -81,14 +109,21 @@ public class PolishNotationProcessor {
             Double num1,
             Double num2
     ) {
-        var value = switch (operator) {
-            case PLUS -> num1 + num2;
-            case MINUS -> num1 - num2;
-            case MUL -> num1 * num2;
-            case DIV -> num1 / num2;
-            case MOD -> num1 % num2;
-            case POW -> Math.pow(num1, num2);
+        double valueResult = 0.0;
+
+        switch (operator) {
+            case PLUS -> valueResult = num1 + num2;
+            case MINUS -> valueResult = num1 - num2;
+            case MUL -> valueResult = num1 * num2;
+            case DIV -> {
+                if (num2 == 0) {
+                    throw new RuntimeException("Error, Division by Zero");
+                }
+                valueResult = num1 / num2;
+            }
+            case MOD -> valueResult = num1 % num2;
+            case POW -> valueResult = Math.pow(num1, num2);
         };
-        return new TokenNumber(value);
+        return new TokenNumber(valueResult);
     }
 }

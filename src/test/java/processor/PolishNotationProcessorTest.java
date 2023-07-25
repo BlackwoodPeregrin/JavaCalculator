@@ -1,5 +1,8 @@
+package processor;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import parser.ExpressionParser;
 
 public class PolishNotationProcessorTest {
     @Test
@@ -37,6 +40,12 @@ public class PolishNotationProcessorTest {
         expectedValue = -Math.pow(2, -2);
         Assertions.assertEquals(expectedValue, PolishNotationProcessor.process(
                 ExpressionParser.parse("-(2^-2)")
+            )
+        );
+
+        expectedValue = Math.pow(2, -2) + 300 * -Math.pow(2, -2);
+        Assertions.assertEquals(expectedValue, PolishNotationProcessor.process(
+                ExpressionParser.parse("(2^-2)+300*-(2^-2)")
             )
         );
     }
