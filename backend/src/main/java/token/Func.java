@@ -9,5 +9,6 @@ public enum Func {
     ATAN,
     SQRT,
     LN,
-    LOG
+    LOG,
+    Exp
 }

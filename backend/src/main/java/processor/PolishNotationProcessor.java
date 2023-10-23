@@ -100,6 +100,9 @@ public class PolishNotationProcessor {
                 }
                 value = Math.log(num);
             }
+            case Exp -> {
+                value = Math.exp(num);
+            }
         };
         return new TokenNumber(value);
     }

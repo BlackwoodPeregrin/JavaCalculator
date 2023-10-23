@@ -126,6 +126,8 @@ public class ExpressionListener extends InputExpressionBaseListener {
             buildHelper.addFunc(Func.SQRT);
         } else if (ctx.Ln() != null) {
             buildHelper.addFunc(Func.LN);
+        } else if (ctx.Exp() != null) {
+            buildHelper.addFunc(Func.Exp);
         } else {
             buildHelper.addFunc(Func.LOG);
         }

@@ -14,7 +14,7 @@ expr: function | number | lBrecket expression rBrecket;
 
 function: fun lBrecket expression rBrecket;
 
-fun: Sin | Cos | Tan | Asin | Acos | Atan | Sqrt | Ln | Log;
+fun: Sin | Cos | Tan | Asin | Acos | Atan | Sqrt | Ln | Log | Exp;
 operator: Plus | Minus | Mult | Div | Mod | Pow;
 unaryOperator: Plus | Minus;
 number: Number;
@@ -35,6 +35,7 @@ Asin: [Aa] [Ss] [Ii] [Nn];
 Acos: [Aa] [Cc] [Oo] [Ss];
 Atan: [Aa] [Tt] [Aa] [Nn];
 Sqrt: [Ss] [Qq] [Rr] [Tt];
+Exp: [Ee] [Xx] [Pp];
 Ln: [Ll] [Nn];
 Log: [Ll] [Oo] [Gg];
 WS: [ \t\r\n]+ -> skip;
